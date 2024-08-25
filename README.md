@@ -32,11 +32,15 @@ Implemented exceptions for the project are:
 4. UnformattedInstructionException
 
 ## How to use the program
-
+Either
 - [Download the artifact](https://github.com/amir-ni/Java-asm-compiler/releases/download/v1.0.0/Java-asm-compiler.jar) and open the program
+
+Or
 - Clone the code, import it to the IDE of your choice, and run the **JavaAsmCompiler.java** file to open the program.
 
-Write your MIPS code, click on the run button; if console displayed successful compile click on pipeline button to display the simulation.
+Then
+
+- Write your MIPS code, click on the run button; if console displayed successful compile, click on pipeline button to display the simulation.
 
 ## Custom features
 
