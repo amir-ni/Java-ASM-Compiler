@@ -19,6 +19,7 @@ import java.awt.*;
 import java.awt.dnd.*;
 import java.awt.event.*;
 import java.io.*;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -59,29 +60,29 @@ public class UI extends JFrame implements ActionListener {
     private JTable table;
     private PipelinePanels pipelinePanels;
 
-    private final ImageIcon newIcon = new ImageIcon("icons/new.png");
-    private final ImageIcon openIcon = new ImageIcon("icons/open.png");
-    private final ImageIcon saveIcon = new ImageIcon("icons/save.png");
-    private final ImageIcon redoIcon = new ImageIcon("icons/redo.png");
-    private final ImageIcon undoIcon = new ImageIcon("icons/undo.png");
-    private final ImageIcon closeIcon = new ImageIcon("icons/close.png");
-    private final ImageIcon runIcon = new ImageIcon("icons/run.png");
-    private final ImageIcon pipelineIcon = new ImageIcon("icons/pipeline.png");
-    private final ImageIcon collapseIcon = new ImageIcon("icons/collapse.png");
-    private final ImageIcon clearIcon = new ImageIcon("icons/clear.png");
-    private final ImageIcon cutIcon = new ImageIcon("icons/cut.png");
-    private final ImageIcon copyIcon = new ImageIcon("icons/copy.png");
-    private final ImageIcon pasteIcon = new ImageIcon("icons/paste.png");
-    private final ImageIcon selectAllIcon = new ImageIcon("icons/select_all.png");
-    private final ImageIcon searchIcon = new ImageIcon("icons/search.png");
-    private final ImageIcon aboutMeIcon = new ImageIcon("icons/about_me.png");
-    private final ImageIcon aboutIcon = new ImageIcon("icons/about.png");
+    private final ImageIcon newIcon = new ImageIcon(getClass().getResource("icons/new.png"));
+    private final ImageIcon openIcon = new ImageIcon(getClass().getResource("icons/open.png"));
+    private final ImageIcon saveIcon = new ImageIcon(getClass().getResource("icons/save.png"));
+    private final ImageIcon redoIcon = new ImageIcon(getClass().getResource("icons/redo.png"));
+    private final ImageIcon undoIcon = new ImageIcon(getClass().getResource("icons/undo.png"));
+    private final ImageIcon closeIcon = new ImageIcon(getClass().getResource("icons/close.png"));
+    private final ImageIcon runIcon = new ImageIcon(getClass().getResource("icons/run.png"));
+    private final ImageIcon pipelineIcon = new ImageIcon(getClass().getResource("icons/pipeline.png"));
+    private final ImageIcon collapseIcon = new ImageIcon(getClass().getResource("icons/collapse.png"));
+    private final ImageIcon clearIcon = new ImageIcon(getClass().getResource("icons/clear.png"));
+    private final ImageIcon cutIcon = new ImageIcon(getClass().getResource("icons/cut.png"));
+    private final ImageIcon copyIcon = new ImageIcon(getClass().getResource("icons/copy.png"));
+    private final ImageIcon pasteIcon = new ImageIcon(getClass().getResource("icons/paste.png"));
+    private final ImageIcon selectAllIcon = new ImageIcon(getClass().getResource("icons/select_all.png"));
+    private final ImageIcon searchIcon = new ImageIcon(getClass().getResource("icons/search.png"));
+    private final ImageIcon aboutMeIcon = new ImageIcon(getClass().getResource("icons/about_me.png"));
+    private final ImageIcon aboutIcon = new ImageIcon(getClass().getResource("icons/about.png"));
 
     private int untitledCounter;
 
     UI() {
         codeAreas = new ArrayList<>();
-        ImageIcon image = new ImageIcon("icons/app.png");
+        ImageIcon image = new ImageIcon(getClass().getResource("icons/app.png"));
         setIconImage(image.getImage());
         setSize(1080, 768);
         setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);

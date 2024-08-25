@@ -50,8 +50,12 @@ public class Assembler {
         int insCounter = 0;
 //        int branchInsCounter = 0; // this is count instructions + labels in different way // It defines for branch offset
 //        boolean branchInsCounterChecker = false;
+
         for (String instruction : instructions) {
             String[] instructionParts = instruction.split(" ");
+            if (instructionParts.length > 1){
+                instructionParts[1] = instructionParts[1].trim();
+            }
             Instruction ins = null;
             switch (instructionParts[0]) {
                 case "add":
@@ -153,7 +157,6 @@ public class Assembler {
      */
     private List<String> findLabels(List<String> instructions) throws UnformattedInstructionException {
         List<String> finalList = new ArrayList<>();
-
         int insCounter = 0;
         int i = 1;
         for (String instruction : instructions) {

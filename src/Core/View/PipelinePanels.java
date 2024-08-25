@@ -8,6 +8,8 @@ import Core.Exceptions.UnformattedInstructionException;
 import Core.Images.Images;
 
 import javax.swing.*;
+import javax.swing.event.ChangeEvent;
+import javax.swing.event.ChangeListener;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -18,12 +20,25 @@ import java.util.List;
 public class PipelinePanels extends JFrame {
     private Core core;
 
+    private int clock = 0;
 
+    public void setClock(int clock){
+        if (clock < core.getAssembler().getPipelines().size()) {
+            clockTextField.setText(Integer.toString(clock));
+            showBtn.doClick();
+        }
+    }
+
+    private JButton previousBtn = new JButton();
+    private JButton nextBtn = new JButton();
+    private JButton showBtn = new JButton();
+    private JTextField clockTextField = new JTextField("0");
+    private JLabel clockLbl = new JLabel("Clock:");
     public PipelinePanels(List<String> normalInstructions, JTable registerTable) throws IllegalRegisterNumberException, SymbolNotFoundException, UnformattedInstructionException, UndefindInstructionException {
-        setSize(1000, 700);
+        setSize(1000, 720);
         setLayout(null);
         setResizable(false);
-
+        
         core = new Core(normalInstructions, registerTable);
 
         JTabbedPane tabbedPane = new JTabbedPane();
@@ -48,11 +63,7 @@ public class PipelinePanels extends JFrame {
         graphicalPanel.add(bottomPanel);
 
         //bottom panel
-        JButton previousBtn = new JButton();
-        JButton nextBtn = new JButton();
-        JButton showBtn = new JButton();
-        JTextField clockTextField = new JTextField("0");
-        JLabel clockLbl = new JLabel("Clock:");
+
         Icon pre = new ImageIcon(Images.previousIcon);
         previousBtn.setIcon(pre);
         Icon next = new ImageIcon(Images.nextIcon);
@@ -62,11 +73,11 @@ public class PipelinePanels extends JFrame {
         clockLbl.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
         clockTextField.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
         clockTextField.setHorizontalAlignment(0);
-        previousBtn.setBounds(37, 3, 40, 40);
-        nextBtn.setBounds(900, 3, 40, 40);
-        clockLbl.setBounds(405, 3, 50, 40);
-        clockTextField.setBounds(460, 3, 50, 40);
-        showBtn.setBounds(515, 3, 40, 40);
+        previousBtn.setBounds(35, 10, 40, 40);
+        nextBtn.setBounds(900, 10, 40, 40);
+        clockLbl.setBounds(405, 10, 50, 40);
+        clockTextField.setBounds(460, 10, 50, 40);
+        showBtn.setBounds(515, 10, 40, 40);
         bottomPanel.add(previousBtn);
         bottomPanel.add(nextBtn);
         bottomPanel.add(showBtn);
@@ -98,13 +109,23 @@ public class PipelinePanels extends JFrame {
             }
         });
 
-        showBtn.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent e) {
-                core.setDetails(Integer.parseInt(clockTextField.getText()));
-                core.showGraphical(singleClockCyclePanel, Integer.parseInt(clockTextField.getText()));
+        showBtn.addActionListener(e -> {
+            if (Integer.parseInt(clockTextField.getText()) >= core.getAssembler().getPipelines().size()){
+                clockTextField.setText(Integer.toString(core.getAssembler().getPipelines().size()-1));
+            } else if (Integer.parseInt(clockTextField.getText()) < 0) {
+                clockTextField.setText("0");
             }
+            this.clock = Integer.parseInt(clockTextField.getText());
+            core.setDetails(Integer.parseInt(clockTextField.getText()));
+            core.showGraphical(singleClockCyclePanel, Integer.parseInt(clockTextField.getText()));
         });
+//        showBtn.addActionListener(new ActionListener() {
+//            @Override
+//            public void actionPerformed(ActionEvent e) {
+//                core.setDetails(Integer.parseInt(clockTextField.getText()));
+//                core.showGraphical(singleClockCyclePanel, Integer.parseInt(clockTextField.getText()));
+//            }
+//        });
 
         clockTextField.addKeyListener(new KeyListener() {
             @Override
@@ -122,6 +143,25 @@ public class PipelinePanels extends JFrame {
             @Override
             public void keyReleased(KeyEvent e) {
 
+            }
+        });
+
+        tabbedPane.addChangeListener(new ChangeListener() {
+            @Override
+            public void stateChanged(ChangeEvent e) {
+                int selectedIndex = tabbedPane.getSelectedIndex();
+                Component selectedComponent = tabbedPane.getComponentAt(selectedIndex);
+
+                if (selectedComponent instanceof JPanel) {
+                    JPanel selectedPanel = (JPanel) selectedComponent;
+                    if (selectedPanel == text_panel) {
+                        // Update something in panel1 when it's selected
+                        text_panel.setClock(clock);
+                    } else if (selectedPanel == graphicalPanel) {
+                        // Update something in panel2 when it's selected
+                        setClock(text_panel.getClock());
+                    }
+                }
             }
         });
     }

@@ -126,7 +126,7 @@ public abstract class Instruction {
     }
 
     public int convertRegisterName(String registerName) throws IllegalRegisterNumberException {
-        registerName = registerName.toLowerCase();
+        registerName = registerName.toLowerCase().trim();
         switch (registerName) {
             case "zero":
                 return 0;

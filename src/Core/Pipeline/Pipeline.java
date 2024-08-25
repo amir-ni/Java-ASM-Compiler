@@ -71,8 +71,13 @@ public class Pipeline {
         // Stage EX
         if (stagesInstruction[2] != null) {
             stages[2] = buildEX();
-            if (stages[2] != null)
+            if (stages[2] != null){
                 pipelineRegisters[2] = stages[2].runStage();
+                if(pipelineRegisters[2].getInstruction() instanceof beq && ((EX_MEM_Register) pipelineRegisters[2]).isZero()){
+                    assembler.setPc_register(((EX_MEM_Register) pipelineRegisters[2]).getBranchTarget());
+                }
+            }
+                
         }
 
         // Stage IF ( In Second Half Read The Instruction Memory)

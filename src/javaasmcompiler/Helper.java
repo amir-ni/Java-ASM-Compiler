@@ -9,7 +9,16 @@ public class Helper {
     public static java.util.List<String> normalizeInstructions(String instructions) {
         List<String> instructionsList = new ArrayList<>();
         final String[] lines = instructions.split("\n");
+        for (int i = 0; i < lines.length; i++) {
+            int index = lines[i].indexOf('#');
+            if (index != -1) {
+                lines[i] = lines[i].substring(0, index);  // Keep everything before '#'
+            }
+            lines[i] = lines[i].trim();
+        }
         for (String line : lines) {
+            if (line.length() == 0)
+                continue;
             boolean firstSpace = false;
             String ins = "";
             if (line.contains(":")) {

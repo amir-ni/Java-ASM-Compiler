@@ -17,6 +17,25 @@ import java.awt.event.KeyListener;
 public class Text_Panel extends JPanel {
     private Core core;
 
+    private int clock = 0;
+
+    public void setClock(int clock){
+        if (clock < core.getAssembler().getPipelines().size()) {
+            clockTextField.setText(Integer.toString(clock));
+            showBtn.doClick();
+        }
+    }
+
+    public int getClock(){
+        return clock;
+    }
+
+    private JButton previousBtn = new JButton();
+    private JButton nextBtn = new JButton();
+    private JButton showBtn = new JButton();
+    private JTextField clockTextField = new JTextField("0");
+    private JLabel clockLbl = new JLabel("Clock:");
+
     public Text_Panel(Core core) {
         this.core = core;
         setLayout(null);
@@ -27,11 +46,7 @@ public class Text_Panel extends JPanel {
         add(bottomPanel);
 
         //BottomPanel
-        JButton previousBtn = new JButton();
-        JButton nextBtn = new JButton();
-        JButton showBtn = new JButton();
-        JTextField clockTextField = new JTextField("0");
-        JLabel clockLbl = new JLabel("Clock:");
+
         Icon pre = new ImageIcon(Images.previousIcon);
         previousBtn.setIcon(pre);
         Icon next = new ImageIcon(Images.nextIcon);
@@ -41,11 +56,11 @@ public class Text_Panel extends JPanel {
         clockLbl.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
         clockTextField.setFont(new Font(Font.SERIF, Font.PLAIN, 18));
         clockTextField.setHorizontalAlignment(0);
-        previousBtn.setBounds(37, 3, 40, 40);
-        nextBtn.setBounds(900, 3, 40, 40);
-        clockLbl.setBounds(405, 3, 50, 40);
-        clockTextField.setBounds(460, 3, 50, 40);
-        showBtn.setBounds(515, 3, 40, 40);
+        previousBtn.setBounds(35, 10, 40, 40);
+        nextBtn.setBounds(900, 10, 40, 40);
+        clockLbl.setBounds(405, 10, 50, 40);
+        clockTextField.setBounds(460, 10, 50, 40);
+        showBtn.setBounds(515, 10, 40, 40);
         bottomPanel.add(previousBtn);
         bottomPanel.add(nextBtn);
         bottomPanel.add(showBtn);
@@ -311,7 +326,15 @@ public class Text_Panel extends JPanel {
         });
 
         showBtn.addActionListener(e -> {
-            core.setDetails(Integer.parseInt(clockTextField.getText()));
+            if (Integer.parseInt(clockTextField.getText()) >= core.getAssembler().getPipelines().size()){
+                clockTextField.setText(Integer.toString(core.getAssembler().getPipelines().size()-1));
+            } else if (Integer.parseInt(clockTextField.getText()) < 0) {
+                clockTextField.setText("0");
+            }
+
+            clockTextField.setText(Integer.toString(Integer.parseInt(clockTextField.getText())));
+            this.clock = Integer.parseInt(clockTextField.getText());
+            core.setDetails(clock);
 
             // register table
             for (int i = 0; i < 32; i++) {

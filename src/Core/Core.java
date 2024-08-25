@@ -21,7 +21,6 @@ import java.awt.*;
 import java.util.List;
 
 public class Core {
-    private String assemblyCode;
     //    private List<String> normalInstructions;
     private Assembler assembler;
 
@@ -128,7 +127,6 @@ public class Core {
 
 
     public Core(List<String> normalInstructions, JTable registerTable) throws UnformattedInstructionException, SymbolNotFoundException, UndefindInstructionException, IllegalRegisterNumberException {
-        this.assemblyCode = assemblyCode;
         assembler = new Assembler(normalInstructions, registerTable);
         assembler.runPipeline();
 
@@ -594,9 +592,6 @@ public class Core {
 //        return instructionsList;
 //    }
 
-    public String getAssemblyCode() {
-        return assemblyCode;
-    }
 
     public Assembler getAssembler() {
         return assembler;
