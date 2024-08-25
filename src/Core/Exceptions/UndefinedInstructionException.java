@@ -1,9 +1,9 @@
 package Core.Exceptions;
 
-public class UndefindInstructionException extends Exception {
+public class UndefinedInstructionException extends Exception {
     private int line;
 
-    public UndefindInstructionException(int line) {
+    public UndefinedInstructionException(int line) {
         this.line = line;
     }
 

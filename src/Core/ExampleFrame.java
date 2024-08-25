@@ -10,7 +10,7 @@
 ////            e.printStackTrace();
 ////        } catch (UnformattedInstructionException e) {
 ////            e.printStackTrace();
-////        } catch (UndefindInstructionException e) {
+////        } catch (UndefinedInstructionException e) {
 ////            e.printStackTrace();
 ////        }
 ////        try {
@@ -29,7 +29,7 @@
 ////class frame extends JFrame {
 ////
 ////
-////    public frame() throws IllegalRegisterNumberException, SymbolNotFoundException, UnformattedInstructionException, UndefindInstructionException {
+////    public frame() throws IllegalRegisterNumberException, SymbolNotFoundException, UnformattedInstructionException, UndefinedInstructionException {
 ////        Core core = new Core("Start:\n" +
 ////                "add $t0, $t0,$t2\n" +
 ////                "beq $t0, $t2, Start\n" +

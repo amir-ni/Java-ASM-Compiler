@@ -2,7 +2,7 @@ package javaasmcompiler;
 
 import Core.Exceptions.IllegalRegisterNumberException;
 import Core.Exceptions.SymbolNotFoundException;
-import Core.Exceptions.UndefindInstructionException;
+import Core.Exceptions.UndefinedInstructionException;
 import Core.Exceptions.UnformattedInstructionException;
 import Core.View.PipelinePanels;
 
@@ -466,7 +466,7 @@ public class UI extends JFrame implements ActionListener {
             log.setText(String.format("%s%d: %s%s%s%s", EXECUTION_TERMINATED_WITH_AN_ERROR_SYMBOL_NOT_FOUND_EXCEPTION_AT_LINE, e.getLine(), normalInstructions.get(e.getLine() - 1), LABEL, e.getLabel(), NOT_FOUND_IN_SYMBOL_TABLE));
         } catch (UnformattedInstructionException e) {
             log.setText(String.format("%s%d: %s", EXECUTION_TERMINATED_WITH_AN_ERROR_UNFORMATTED_INSTRUCTION_EXCEPTION_AT_LINE, e.getLine(), normalInstructions.get(e.getLine() - 1)));
-        } catch (UndefindInstructionException e) {
+        } catch (UndefinedInstructionException e) {
             log.setText(String.format("%s%d: %s", EXECUTION_TERMINATED_WITH_AN_ERROR_UNDEFINED_INSTRUCTION_EXCEPTION_AT_LINE, e.getLine(), normalInstructions.get(e.getLine() - 1)));
         }
     }

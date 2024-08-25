@@ -3,7 +3,7 @@ package Core;
 import Core.Assembler.Assembler;
 import Core.Exceptions.IllegalRegisterNumberException;
 import Core.Exceptions.SymbolNotFoundException;
-import Core.Exceptions.UndefindInstructionException;
+import Core.Exceptions.UndefinedInstructionException;
 import Core.Exceptions.UnformattedInstructionException;
 import Core.Images.Images;
 import Core.Instructions.nop;
@@ -126,7 +126,7 @@ public class Core {
     JLabel wb_instruction_lbl;
 
 
-    public Core(List<String> normalInstructions, JTable registerTable) throws UnformattedInstructionException, SymbolNotFoundException, UndefindInstructionException, IllegalRegisterNumberException {
+    public Core(List<String> normalInstructions, JTable registerTable) throws UnformattedInstructionException, SymbolNotFoundException, UndefinedInstructionException, IllegalRegisterNumberException {
         assembler = new Assembler(normalInstructions, registerTable);
         assembler.runPipeline();
 

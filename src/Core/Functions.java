@@ -3,7 +3,7 @@
 //import Core.Assembler.Assembler;
 //import Core.Exceptions.IllegalRegisterNumberException;
 //import Core.Exceptions.SymbolNotFoundException;
-//import Core.Exceptions.UndefindInstructionException;
+//import Core.Exceptions.UndefinedInstructionException;
 //import Core.Exceptions.UnformattedInstructionException;
 //import Core.Pipeline.Pipeline;
 //import Core.Pipeline.Stages.IF_Stage;
@@ -69,7 +69,7 @@
 //            }
 //
 //
-//        } catch (UndefindInstructionException e) {
+//        } catch (UndefinedInstructionException e) {
 //            System.err.println("Execution terminated with an error:");
 //            System.err.println("UndefinedInstructionException at line " + e.getLine() + ": " +
 //                    normalInstructions.get(e.getLine() - 1));

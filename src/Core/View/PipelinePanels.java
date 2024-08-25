@@ -3,7 +3,7 @@ package Core.View;
 import Core.Core;
 import Core.Exceptions.IllegalRegisterNumberException;
 import Core.Exceptions.SymbolNotFoundException;
-import Core.Exceptions.UndefindInstructionException;
+import Core.Exceptions.UndefinedInstructionException;
 import Core.Exceptions.UnformattedInstructionException;
 import Core.Images.Images;
 
@@ -34,7 +34,7 @@ public class PipelinePanels extends JFrame {
     private JButton showBtn = new JButton();
     private JTextField clockTextField = new JTextField("0");
     private JLabel clockLbl = new JLabel("Clock:");
-    public PipelinePanels(List<String> normalInstructions, JTable registerTable) throws IllegalRegisterNumberException, SymbolNotFoundException, UnformattedInstructionException, UndefindInstructionException {
+    public PipelinePanels(List<String> normalInstructions, JTable registerTable) throws IllegalRegisterNumberException, SymbolNotFoundException, UnformattedInstructionException, UndefinedInstructionException {
         setSize(1000, 720);
         setLayout(null);
         setResizable(false);

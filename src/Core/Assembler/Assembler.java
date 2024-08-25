@@ -2,7 +2,7 @@ package Core.Assembler;
 
 import Core.Exceptions.IllegalRegisterNumberException;
 import Core.Exceptions.SymbolNotFoundException;
-import Core.Exceptions.UndefindInstructionException;
+import Core.Exceptions.UndefinedInstructionException;
 import Core.Exceptions.UnformattedInstructionException;
 import Core.Instructions.*;
 import Core.Pipeline.Pipeline;
@@ -26,7 +26,7 @@ public class Assembler {
     /*private Map<String, Prediction> predictionMap;*/
 
 
-    public Assembler(List<String> instructions, JTable registerTable) throws UndefindInstructionException,
+    public Assembler(List<String> instructions, JTable registerTable) throws UndefinedInstructionException,
             UnformattedInstructionException, IllegalRegisterNumberException,
             SymbolNotFoundException {
         this.instructions = new ArrayList<>();
@@ -93,7 +93,7 @@ public class Assembler {
 //                            branchInsCounterChecker = true;
 //                        }
                     } else {
-                        throw new UndefindInstructionException(i); // start lines from 1
+                        throw new UndefinedInstructionException(i); // start lines from 1
                     }
             }
             if (ins != null) {
